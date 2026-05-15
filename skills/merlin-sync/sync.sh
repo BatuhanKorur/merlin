@@ -17,10 +17,10 @@ mkdir -p "$DEST_SKILLS"
 rsync -a --delete "$SRC_SKILLS" "$DEST_SKILLS"
 
 cd "$DEST"
-git add global-claude.md skills/
+git add global-claude.md skills/ README.md
 
 if git diff --cached --quiet; then
-  echo "No changes to commit for global-claude.md or skills/."
+  echo "No changes to commit for global-claude.md, skills/, or README.md."
   exit 0
 fi
 
