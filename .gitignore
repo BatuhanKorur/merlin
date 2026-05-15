@@ -9,6 +9,7 @@ node_modules
 *.iml
 .vscode/*
 !.vscode/extensions.json
+.obsidian
 *.swp
 *.swo
 
