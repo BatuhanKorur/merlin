@@ -28,7 +28,7 @@ Goal: keep `~/merlin/README.md`'s `## Skills` section in sync with `~/.claude/sk
 1. List `~/.claude/skills/*/SKILL.md`. That's the canonical set.
 2. Read `~/merlin/README.md`. Find the `## Skills` section.
 3. **Reconcile:**
-   - For each skill present in `~/.claude/skills/` but **missing** from README: draft a new entry (format below) and insert it in the section, ordered by the decision-lifecycle skills first (`problem-frame` → `brainstorm` → `trade-off` → `decision-log`), then everything else.
+   - For each skill present in `~/.claude/skills/` but **missing** from README: draft a new entry (format below) and insert it in the section, ordered by the decision-lifecycle skills first (`brainstorm` → `trade-off` → `decision-log`), then everything else.
    - For each entry in README whose skill **no longer exists** in `~/.claude/skills/`: remove the entry.
    - For each existing entry that's missing the `When:` / `Result:` bullet lines required by the format: add them, **without rewriting the existing prose/metaphor**.
    - Do not touch entries that already conform — leave the curated voice alone.
@@ -45,7 +45,7 @@ The **<one-or-two-word metaphor>**. <One sentence: what the skill does and its e
 
 The metaphor should fit the existing style (compass, workshop, scales, court reporter). One or two words, bold. If a skill doesn't suggest a clean metaphor, pick a noun that names its role.
 
-If the section's intro paragraph or the decision-lifecycle arrow line (`problem-frame → brainstorm → trade-off → decision-log`) becomes inaccurate because skills changed, surface the inconsistency to the user — do **not** silently rewrite framing prose.
+If the section's intro paragraph or the decision-lifecycle arrow line (`brainstorm → trade-off → decision-log`) becomes inaccurate because skills changed, surface the inconsistency to the user — do **not** silently rewrite framing prose.
 
 ### Step 2 — Run the sync script
 

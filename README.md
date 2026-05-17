@@ -2,18 +2,13 @@
 
 Personal global Claude config — a shared `global-claude.md` and a set of opinionated skills used across repos. The skills are deliberately **thinking partners**, not code-generation helpers: they shape *how* Claude collaborates with me, rather than automate output. They sit on a single axis — the decision lifecycle — and cross-link with each other.
 
-`problem-frame` → `brainstorm` → `trade-off` → `decision-log`
+`brainstorm` → `trade-off` → `decision-log`
 
 ## Global config
 
 - **`global-claude.md`** — operating philosophy. Establishes Claude as a senior collaborator that pushes back, surfaces tradeoffs, and reports honestly, instead of agreeing and shipping.
 
 ## Skills
-
-### [`problem-frame`](skills/problem-frame/SKILL.md)
-The **compass**. Sharpens a fuzzy or solution-shaped problem before any options are considered — names whose problem it is, why now, the binding constraint, and what's out of scope.
-- **When:** A request jumps straight to a solution; the problem statement is vague; "we should build X" without saying why.
-- **Result:** One-sentence problem statement (no solution inside), owner, binding constraint, out-of-scope list, recommended next move.
 
 ### [`brainstorm`](skills/brainstorm/SKILL.md)
 The **workshop**. Forces divergent thinking before any option is weighed — at least five candidates including the obvious, the inverse, the cheap, the over-engineered, and the do-nothing, then prunes by dominance.
@@ -40,10 +35,20 @@ The **debrief**. Mines the just-finished session for durable workflow improvemen
 - **When:** End of a session that surfaced friction or new patterns; "session review," "what did we learn," "what should we update."
 - **Result:** A list of proposed CLAUDE.md / skill edits with rationale, to accept or reject.
 
+### [`grill-me`](skills/grill-me/SKILL.md)
+The **interrogator**. Interviews relentlessly about a plan or design one question at a time, walking each branch of the decision tree and offering a recommended answer per question until shared understanding is reached.
+- **When:** Before committing to a non-trivial plan; "grill me on this," "stress-test this design," "interview me about the plan."
+- **Result:** A resolved decision tree — open branches named, recommended answers proposed, ambiguity surfaced before implementation starts.
+
 ### [`merlin-sync`](skills/merlin-sync/SKILL.md)
 The **archivist**. Backs up `~/.claude/CLAUDE.md` and `~/.claude/skills/` to this repo, keeps this README's skill catalog in sync with what's on disk, then commits and pushes — so the global config is versioned in GitHub rather than living on a single laptop.
 - **When:** After adding, editing, or removing a global skill, or after editing `global-claude.md`; "sync merlin," "back up my claude config."
 - **Result:** New commit `Updated documents YYYY-MM-DD HH:MM:SS` pushed to `origin/main`, with `global-claude.md`, `skills/`, and this README's skill list reconciled.
+
+### [`write-a-skill`](skills/write-a-skill/SKILL.md)
+The **blueprint**. Drafts new skills with the required `SKILL.md` structure, trigger-bearing description, and progressive-disclosure layout — asking enough about scope to size them correctly before any file is written.
+- **When:** Adding a new global or per-repo skill; "write a skill for X," "help me build a new skill," "scaffold a skill."
+- **Result:** New skill directory with a conforming `SKILL.md` (and optional reference files or scripts), ready to drop into `~/.claude/skills/` or a project's `.claude/skills/`.
 
 ## Per-repo integration
 
