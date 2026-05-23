@@ -45,6 +45,16 @@ The **archivist**. Backs up `~/.claude/CLAUDE.md` and `~/.claude/skills/` to thi
 - **When:** After adding, editing, or removing a global skill, or after editing `global-claude.md`; "sync merlin," "back up my claude config."
 - **Result:** New commit `Updated documents YYYY-MM-DD HH:MM:SS` pushed to `origin/main`, with `global-claude.md`, `skills/`, and this README's skill list reconciled.
 
+### [`open-questions`](skills/open-questions/SKILL.md)
+The **resolver**. Walks through every unresolved item in a plan one at a time — frames context, proposes options with tradeoffs and a recommendation, lets the user pick via `AskUserQuestion`, then writes the decisions back into the plan. Natural follow-on to `trade-off` or `refactor` when their output carries TBDs.
+- **When:** A plan has an Open Questions / TBD / Decisions-needed section that needs working through; "go through the open questions one by one," "resolve the open questions in this plan."
+- **Result:** Every question answered and recorded inline as `**Decision:** <choice> — <rationale>`, with resolved items moved into a `## Decisions` section and any genuinely-deferred ones left flagged.
+
+### [`refactor`](skills/refactor/SKILL.md)
+The **inspector**. Analyzes a file or directory, detects the project's language/linter/conventions, and produces a prioritized refactoring report plus a saved markdown plan — proposes only, never edits source and never executes the plan.
+- **When:** Given a file or directory path with "refactor," "review," or "analyze this code/folder"; before committing to a structural cleanup.
+- **Result:** A chat report grouped Critical → Low and a `docs/refactor/YYYY-MM-DD-HHMM-<slug>.md` plan for the user to review before implementation.
+
 ### [`setup-decision-docs`](skills/setup-decision-docs/SKILL.md)
 The **outfitter**. Wires the decision-lifecycle convention into a project's `CLAUDE.md` — scans the repo's layout (flat vs. monorepo), adapts one consolidated template, and safely and idempotently merges a `## Decision-lifecycle records` section so the agent knows where `brainstorm`/`trade-off`/`decision-log` files live and reads them before answering.
 - **When:** Starting to keep decision records in a repo; "set up decision docs here," "wire up the trade-off/decision-log convention in this project."

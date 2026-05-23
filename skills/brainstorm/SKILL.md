@@ -1,18 +1,29 @@
 ---
 name: brainstorm
-description: Force divergent thinking before any option is weighed — generate ≥5 candidates including the obvious, the inverse, the cheap, the over-engineered, and the do-nothing, then prune dominated ones. Use when user says "what are my options," "help me brainstorm," "explore approaches," "I'm between A and B" (and the set is suspiciously narrow), "I'm not sure what to consider," or jumps straight to `trade-off` with only two lazy options. Do NOT use when options are already clear and varied (go straight to `trade-off`), when the problem isn't framed yet (pin down what you're solving first), or for trivial / obvious tasks.
+description: Use when user asks to brainstorm, says "help me brainstorm," "brainstorm on this," "what are my options," "explore approaches," "I'm between A and B" with a suspiciously narrow set, or jumps to `trade-off` with only two lazy options. Skip when options are already clear and varied (go to `trade-off`), the problem isn't framed yet, or for trivial/obvious choices.
 metadata:
-  version: 1.0
-  last-update: 2026-05-13
+  version: 1.4
+  last-update: 2026-05-23
   author: Batuhan Korur
 ---
 
 # Brainstorm
-Upstream skill that widens the option set before `trade-off` weighs anything. Quantity first, prune second. Lighter than other skills: file output is optional, default no — most brainstorms land their survivors directly into a trade-off doc and leave no separate trail. Slot: `brainstorm` → `trade-off` → `decision-log`.
+Upstream skill that widens the option set before `trade-off` weighs anything. Slot: `brainstorm` → `trade-off` → `decision-log`.
+
+## At a glance
+| Step | Action |
+|------|--------|
+| 1 | State the goal — what do these options serve? |
+| 2 | Diverge: generate ≥5 candidates, one per required slot |
+| 3 | Prune dominated candidates |
+| 4 | Hand 2–4 survivors to `trade-off` |
+
+**Required slots:** obvious · inverse · cheap · over-engineered · do-nothing (+ extras)
 
 ## Operating mode
-You're a divergent-thinking forcing function, not a critic and not a picker. Refuse to converge while the field is too narrow. Quantity before quality. No critique during generation — that comes in the prune step. The cardinal failure mode here is fake-divergence: producing 5 candidates that all sit on the same axis. Force breadth by structure (see required slots below), not vibes.
-**Scale the rigor to the situation:** if the user genuinely only has 2 viable options after honest effort, name that and hand straight to `trade-off`. Don't manufacture filler to hit the count.
+You're a divergent-thinking forcing function — not a critic, not a picker. **Quantity before quality; no critique until the prune step.** Refuse to converge while the field is too narrow. The cardinal failure mode is fake-divergence: 5 candidates all sitting on the same axis. Force breadth by structure (the required slots), not vibes.
+
+**Scale the rigor to the situation:** if the user genuinely has only 2 viable options after honest effort, name that and hand straight to `trade-off`. Don't manufacture filler to hit the count.
 
 ## When NOT to use
 - Options are already clear and varied; user just wants them weighed → `trade-off`
@@ -22,46 +33,24 @@ You're a divergent-thinking forcing function, not a critic and not a picker. Ref
 - Pure ideation with no upcoming decision — fine, but don't pretend this skill applies
 
 ## Workflow
-1. **State the goal.** What do these options serve? Refuse to brainstorm in the air — without knowing what the options are *for*, divergence is theater.
-2. **Diverge — generate ≥5 candidates with the required slots.** No critique yet. One short sentence each. The required slots:
+1. **State the goal.** What do these options serve? Refuse to brainstorm in the air — without knowing what the options are *for*, divergence is theater. Technical prompts often hand you a symptom in place of a goal — reconstruct it explicitly (`eliminate X / preserve Y / under constraint Z`).
+
+2. **Diverge — generate ≥5 candidates; all five required slots below are mandatory, extras as warranted.** One short sentence each.
 	- **The obvious one** — what the user likely already had in mind.
 	- **The inverse** — the opposite move, or doing less of what's currently happening.
 	- **The cheap one** — lowest cost / fastest / dumbest version that still addresses the goal.
-	- **The over-engineered one** — the maximalist build-the-platform version. Often clarifies what the right scope *isn't*.
+	- **The over-engineered one** — the maximalist build-the-platform version. Usually gets pruned, and that's the point: its job is to clarify what the right scope *isn't*, not to win.
 	- **The do-nothing / status quo** — always include. If it's "not viable," say so explicitly — don't omit it.
 	- Plus any extras the user surfaces or you legitimately spot.
-3. **Prune dominated options.** An option is *dominated* if another candidate is at least as good on every meaningful axis. Drop it and name why. Also drop options that fail a hard requirement (out before any scoring). Pruning by gut feel ("doesn't feel right") is not allowed — save real comparison for `trade-off`.
+
+3. **Prune dominated options.**
+	- **Dominance test:** name the axes you're comparing on (cost, speed, scope, reversibility, etc.), then drop any option that's *dominated* — i.e., another candidate is at least as good on every axis. Name what dominates it.
+	- Also drop options that fail a hard requirement (out before any scoring).
+	- Pruning by gut feel ("doesn't feel right") is not allowed — save real comparison for `trade-off`.
+
 4. **Surface 2–4 survivors.** Hand them off to `trade-off` with one-sentence pitches. If only one option survives pruning, stop — that's not a brainstorm result, it's a decision. Suggest `decision-log` instead.
-5. **Decide whether to save a file.** Default: **no**, surface survivors in chat and let them land in the trade-off doc. Save a brainstorm file *only* when: the candidate set was non-obvious and worth a paper trail ("we considered X and Y, dropped them for these reasons"), or the user explicitly asks. When a file is produced, file per the repo's brainstorm convention (see project `CLAUDE.md`, or ask if unclear).
 
-## Output template (only when a file is produced)
-```markdown
-# Brainstorm: [one-phrase title]
-
-**Date / context:** YYYY-MM-DD, [where this came up]
-
-**Goal (what these options serve):** ...
-
-**All candidates generated:**
-- **Obvious — [name]:** one-sentence description
-- **Inverse — [name]:** ...
-- **Cheap — [name]:** ...
-- **Over-engineered — [name]:** ...
-- **Do-nothing / status quo:** ... (or "not viable because ...")
-- **[Extra] — [name]:** ...
-
-**Pruned (and why):**
-- **[Option]** — dropped because [dominated by X on every axis / fails hard requirement / not viable because ...]
-
-**Survivors handed to trade-off:**
-- **[Option]** — short pitch
-- **[Option]** — short pitch
-
-**Frame:** _(link or N/A)_
-**Trade-off:** _(populated when promoted)_
-```
-
-For the default in-chat mode, deliver the same content as a tight list — no file.
+5. **Decide whether to save a file.** Default: **no** — surface survivors in chat and let them land in the trade-off doc. Save a brainstorm file *only* when the candidate set was non-obvious and worth a paper trail ("we considered X and Y, dropped them for these reasons"), or the user explicitly asks. When a file is produced, see [`output-template.md`](output-template.md) and follow the repo's brainstorm convention (project `CLAUDE.md`, or ask if unclear).
 
 ## Anti-patterns
 - **Fewer than 5 candidates.** Lazy. Apply the required slots and the missing one usually appears.
