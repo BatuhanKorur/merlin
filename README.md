@@ -46,9 +46,9 @@ The **archivist**. Backs up `~/.claude/CLAUDE.md` and `~/.claude/skills/` to thi
 - **Result:** New commit `Updated documents YYYY-MM-DD HH:MM:SS` pushed to `origin/main`, with `global-claude.md`, `skills/`, and this README's skill list reconciled.
 
 ### [`write-a-skill`](skills/write-a-skill/SKILL.md)
-The **blueprint**. Drafts new skills with the required `SKILL.md` structure, trigger-bearing description, and progressive-disclosure layout — asking enough about scope to size them correctly before any file is written.
+The **blueprint**. Drafts new skills that match this library's house style — reads `trade-off` and `decision-log` as templates, then reproduces their spine (Operating mode, When NOT to use, Workflow, Anti-patterns), a trigger-bearing description, and a Quality bar of trigger/cold-read tests before any file ships.
 - **When:** Adding a new global or per-repo skill; "write a skill for X," "help me build a new skill," "scaffold a skill."
-- **Result:** New skill directory with a conforming `SKILL.md` (and optional reference files or scripts), ready to drop into `~/.claude/skills/` or a project's `.claude/skills/`.
+- **Result:** New skill directory with a conforming, house-style `SKILL.md` (and optional reference files or scripts), ready to drop into `~/.claude/skills/` or a project's `.claude/skills/`.
 
 ## Per-repo integration
 
