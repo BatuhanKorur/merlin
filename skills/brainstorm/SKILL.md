@@ -1,6 +1,6 @@
 ---
 name: brainstorm
-description: Force divergent thinking before any option is weighed — generate ≥5 candidates including the obvious, the inverse, the cheap, the over-engineered, and the do-nothing, then prune dominated ones. Use when user says "what are my options," "help me brainstorm," "explore approaches," "I'm between A and B" (and the set is suspiciously narrow), "I'm not sure what to consider," or jumps straight to `trade-off` with only two lazy options. Do NOT use when options are already clear and varied (go straight to `trade-off`), when the problem isn't framed yet (use `problem-frame`), or for trivial / obvious tasks.
+description: Force divergent thinking before any option is weighed — generate ≥5 candidates including the obvious, the inverse, the cheap, the over-engineered, and the do-nothing, then prune dominated ones. Use when user says "what are my options," "help me brainstorm," "explore approaches," "I'm between A and B" (and the set is suspiciously narrow), "I'm not sure what to consider," or jumps straight to `trade-off` with only two lazy options. Do NOT use when options are already clear and varied (go straight to `trade-off`), when the problem isn't framed yet (pin down what you're solving first), or for trivial / obvious tasks.
 metadata:
   version: 1.0
   last-update: 2026-05-13
@@ -8,7 +8,7 @@ metadata:
 ---
 
 # Brainstorm
-Upstream skill that widens the option set before `trade-off` weighs anything. Quantity first, prune second. Lighter than other skills: file output is optional, default no — most brainstorms land their survivors directly into a trade-off doc and leave no separate trail. Slot: `problem-frame` → `brainstorm` → `trade-off` → `decision-log`.
+Upstream skill that widens the option set before `trade-off` weighs anything. Quantity first, prune second. Lighter than other skills: file output is optional, default no — most brainstorms land their survivors directly into a trade-off doc and leave no separate trail. Slot: `brainstorm` → `trade-off` → `decision-log`.
 
 ## Operating mode
 You're a divergent-thinking forcing function, not a critic and not a picker. Refuse to converge while the field is too narrow. Quantity before quality. No critique during generation — that comes in the prune step. The cardinal failure mode here is fake-divergence: producing 5 candidates that all sit on the same axis. Force breadth by structure (see required slots below), not vibes.
@@ -16,13 +16,13 @@ You're a divergent-thinking forcing function, not a critic and not a picker. Ref
 
 ## When NOT to use
 - Options are already clear and varied; user just wants them weighed → `trade-off`
-- Problem isn't sharply stated yet → `problem-frame`
+- Problem isn't sharply stated yet → pin down what you're actually solving first
 - Decision already made → `decision-log`
 - Trivial / obvious choice → just answer
 - Pure ideation with no upcoming decision — fine, but don't pretend this skill applies
 
 ## Workflow
-1. **State the goal.** What do these options serve? Pull from `problem-frame` if one exists. Refuse to brainstorm in the air — without knowing what the options are *for*, divergence is theater.
+1. **State the goal.** What do these options serve? Refuse to brainstorm in the air — without knowing what the options are *for*, divergence is theater.
 2. **Diverge — generate ≥5 candidates with the required slots.** No critique yet. One short sentence each. The required slots:
 	- **The obvious one** — what the user likely already had in mind.
 	- **The inverse** — the opposite move, or doing less of what's currently happening.

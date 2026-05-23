@@ -33,8 +33,14 @@ You write for *this* library, not a generic one. Every skill you produce should 
 5. **Review with the user.** Show the draft, summarize what you produced in two lines, and ask one focused `AskUserQuestion`: finalize / needs changes / wrong direction. Iterate in place until approved.
 6. **Confirm install + suggest backup.** The skill is live once the folder is in its skills directory. If it's a *global* skill (`~/.claude/skills/`), suggest running `merlin-sync` to back it up and add it to the README catalog. For a project-scoped skill, skip `merlin-sync` (it only handles global config) — commit it with the project instead.
 
+## Skill tiers
+Pick the tier first — it decides how much of the spine below applies.
+- **Canonical** *(default)* — a triggered capability with judgment: the decision-lifecycle skills, `handoff`, `session-review`, this skill. Wears the full spine in "The house style" below. When in doubt, you're writing one of these.
+- **Micro** — a single tightly-scoped instruction, often a third-party skill pulled in as-is (cf. `grill-me`): frontmatter + a few imperative lines, no Operating mode or Anti-patterns. Don't inflate it to canonical for uniformity's sake — the brevity is the point. Still give it a sharp `description`; that's what fires it.
+- **Operational / script-runner** — automates a deterministic task, usually wrapping a script (cf. `merlin-sync`). The spine adapts: `## What it does` + `## Workflow (run in order)` + `## Guardrails` stand in for Operating mode / Anti-patterns. Mechanism (rsync, git, the script's steps) stays in the body — never in the `description`, which carries only triggers and scope.
+
 ## The house style
-This is the spine. Read it as "match what's visible in the library," not a rigid checklist — add sections when the skill earns them.
+This is the spine for the **canonical** tier. Read it as "match what's visible in the library," not a rigid checklist — add sections when the skill earns them.
 
 **Frontmatter** — `name` (kebab-case, matches the folder exactly, no version numbers), `description` (see next section), and a `metadata:` block (`version`, `last-update` as `YYYY-MM-DD`, `author: Batuhan Korur`). Bump `version` and `last-update` on every substantive edit.
 
@@ -71,7 +77,7 @@ Run every draft through these before showing the user:
 - **Cold-read test.** If a fresh agent loaded only this SKILL.md, could it execute the workflow step by step without guessing? Vague steps fail this.
 - **No-conflict test.** Description and body must agree (don't say "always produces a file" up top and "respond inline when short" below).
 - **Brevity test.** Can any section lose 30% without losing information? If yes, cut. Library skills run ~70–110 lines.
-- **House-style test.** Side-by-side with `trade-off`, does it look like the same author wrote it? If not, it drifted.
+- **House-style test.** Side-by-side with `trade-off`, does it look like the same author wrote it? If not, it drifted. (Canonical tier only — micro and operational skills are exempt; see Skill tiers.)
 
 ## When to add scripts
 Bundle a script (in `scripts/`, referenced by relative path) when the operation is **deterministic** (validation, formatting, a fixed transform), when the same code would otherwise be regenerated every run, or when errors need explicit handling. Scripts save tokens and beat generated code on reliability. Don't add a script for anything that needs judgment — that's the skill's job.
@@ -79,7 +85,7 @@ Bundle a script (in `scripts/`, referenced by relative path) when the operation 
 ## When to split files
 Keep SKILL.md scannable. Split content into a sibling file (referenced one level deep) when:
 - A single reference section would push the file past ~150 lines, or is dense lookup material the agent only sometimes needs (cf. the old skill-creator's `format_guide.md`).
-- The skill produces files in a repo and needs a per-repo CLAUDE.md integration block → ship it as `snippet.md` (cf. `trade-off/snippet.md`, `decision-log/snippet.md`).
+- The skill installs a per-repo CLAUDE.md integration block → keep that block in its own `template.md` and have the skill adapt + merge it (cf. `setup-decision-docs` + its `template.md`).
 
 Targets: aim lean (~70–110 lines like the rest of the library); ~500 lines is the hard ceiling, never the goal.
 

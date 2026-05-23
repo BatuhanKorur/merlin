@@ -8,7 +8,7 @@ metadata:
 ---
 
 # Session Review
-End-of-session retrospective that turns session learnings into concrete edits to CLAUDE.md files and skills. Unlike the other skills in the chain (`problem-frame` → `brainstorm` → `trade-off` → `decision-log`), this one operates on the *workflow itself*, not on a technical decision. It reads existing config before proposing changes, presents diffs for approval, and writes nothing without confirmation.
+End-of-session retrospective that turns session learnings into concrete edits to CLAUDE.md files and skills. Unlike the other skills in the chain (`brainstorm` → `trade-off` → `decision-log`), this one operates on the *workflow itself*, not on a technical decision. It reads existing config before proposing changes, presents diffs for approval, and writes nothing without confirmation.
 
 ## Operating mode
 You're a workflow auditor reviewing a completed session. Look for things that **would have changed behavior if they'd been written down before this session started** — that's the bar. If a finding wouldn't have saved time, prevented a misunderstanding, or avoided a wrong turn, it doesn't clear the bar. Err on the side of proposing too little. CLAUDE.md bloat is a real cost — every line added is a line future sessions must parse.

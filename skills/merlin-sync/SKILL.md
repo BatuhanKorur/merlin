@@ -1,6 +1,6 @@
 ---
 name: merlin-sync
-description: Back up the user's global ~/.claude/CLAUDE.md and ~/.claude/skills/ directory to the ~/merlin git repository, keep the repo's README.md skill catalog in sync with what's on disk, then commit and push. Use when the user says "/merlin-sync," "back up my claude config," "sync merlin," "push my skills to github," "save my global claude," or similar. Each run: Claude updates README.md's ## Skills section (adds new skills, removes deleted ones, fills in When/Result lines, preserves the curated voice), then a bash script copies CLAUDE.md → global-claude.md, rsync --deletes skills/, and commits + pushes global-claude.md + skills/ + README.md. Skips commit/push when there are no changes. Do NOT use for project-specific .claude content or for any repo other than ~/merlin.
+description: Back up the user's global ~/.claude/CLAUDE.md and ~/.claude/skills/ to the ~/merlin git repo, keep the repo's README.md skill catalog in sync with what's on disk, then commit and push. Use when the user says "/merlin-sync," "back up my claude config," "sync merlin," "push my skills to github," "save my global claude," or similar. Do NOT use for project-specific .claude content or any repo other than ~/merlin.
 metadata:
   version: 1.0
   last-update: 2026-05-15

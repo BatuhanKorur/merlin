@@ -45,6 +45,11 @@ The **archivist**. Backs up `~/.claude/CLAUDE.md` and `~/.claude/skills/` to thi
 - **When:** After adding, editing, or removing a global skill, or after editing `global-claude.md`; "sync merlin," "back up my claude config."
 - **Result:** New commit `Updated documents YYYY-MM-DD HH:MM:SS` pushed to `origin/main`, with `global-claude.md`, `skills/`, and this README's skill list reconciled.
 
+### [`setup-decision-docs`](skills/setup-decision-docs/SKILL.md)
+The **outfitter**. Wires the decision-lifecycle convention into a project's `CLAUDE.md` — scans the repo's layout (flat vs. monorepo), adapts one consolidated template, and safely and idempotently merges a `## Decision-lifecycle records` section so the agent knows where `brainstorm`/`trade-off`/`decision-log` files live and reads them before answering.
+- **When:** Starting to keep decision records in a repo; "set up decision docs here," "wire up the trade-off/decision-log convention in this project."
+- **Result:** A `## Decision-lifecycle records` section merged into the project (not global) `CLAUDE.md`, with the folder layout filled in and the read-before-answering rules in place.
+
 ### [`write-a-skill`](skills/write-a-skill/SKILL.md)
 The **blueprint**. Drafts new skills that match this library's house style — reads `trade-off` and `decision-log` as templates, then reproduces their spine (Operating mode, When NOT to use, Workflow, Anti-patterns), a trigger-bearing description, and a Quality bar of trigger/cold-read tests before any file ships.
 - **When:** Adding a new global or per-repo skill; "write a skill for X," "help me build a new skill," "scaffold a skill."
@@ -52,4 +57,4 @@ The **blueprint**. Drafts new skills that match this library's house style — r
 
 ## Per-repo integration
 
-Each skill has a `snippet.md` next to its `SKILL.md`. Paste the snippet into the target repo's `CLAUDE.md` and pick the folder layout (flat vs. monorepo). Produced artifacts live in `frames/`, `brainstorms/`, `tradeoffs/`, and `decisions/` folders.
+The decision-lifecycle skills file their records inside each project. Run `setup-decision-docs` in a repo to wire the convention into that project's `CLAUDE.md` — it scans the layout, adapts a single template, and merges a `## Decision-lifecycle records` section pointing at the repo's `brainstorms/`, `tradeoffs/`, and `decisions/` folders.
